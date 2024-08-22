@@ -1,37 +1,40 @@
-# Use a imagem oficial do PHP com Apache na versão 8.2
+# Use a imagem oficial do PHP 8.2 com Apache
 FROM php:8.2-apache
 
-# Instale dependências do sistema
+# Instala extensões necessárias do PHP
 RUN apt-get update && apt-get install -y \
     libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
     libonig-dev \
     libxml2-dev \
     zip \
     unzip \
-    git \
-    curl
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Instale extensões PHP necessárias
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+# Habilita o mod_rewrite do Apache
+RUN a2enmod rewrite
 
-# Instale o Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Defina o diretório de trabalho
+# Define o diretório de trabalho
 WORKDIR /var/www/html
 
-# Copie os arquivos do projeto
-COPY . .
+# Copia o arquivo de configuração do Apache
+COPY ./apache/vhost.conf /etc/apache2/sites-available/000-default.conf
 
-# Configure o Apache
-RUN chown -R www-data:www-data /var/www/html \
-    && a2enmod rewrite
+# Instala dependências do Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Rode o Composer para instalar as dependências
-RUN composer install --no-scripts
+# Copia o projeto para o container
+COPY . /var/www/html
 
-# Exponha a porta 80 para o Apache
+# Executa o Composer para instalar as dependências do Laravel
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
+# Ajusta as permissões para permitir acesso a todos
+RUN chmod -R 777 .
+
+# Expõe a porta 80
 EXPOSE 80
 
-# Inicie o Apache
+# Comando para iniciar o Apache
 CMD ["apache2-foreground"]
