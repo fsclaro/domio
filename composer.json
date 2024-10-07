@@ -6,19 +6,28 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "ariaieboy/filament-currency": "^1.9",
+        "filament/filament": "^3.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "leandrocfe/filament-ptbr-form-fields": "^3.0",
+        "malzariey/filament-daterangepicker-filter": "^3.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.1",
+        "doctrine/dbal": "^3.9",
         "fakerphp/faker": "^1.9.1",
+        "laradumps/laradumps": "^3.2",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
+        "lucascudo/laravel-pt-br-localization": "^2.2",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.1",
-        "spatie/laravel-ignition": "^2.0"
+        "spatie/laravel-ignition": "^2.0",
+        "squizlabs/php_codesniffer": "^3.10"
     },
     "autoload": {
         "psr-4": {
@@ -33,9 +42,14 @@
         }
     },
     "scripts": {
+        "generate": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:models -N"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

@@ -24,3 +24,10 @@ if [ $# -gt 0 ]; then
 else
     exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 fi
+
+echo "Setting permissions for Laravel"
+if [ ! -f /var/www/storage/logs/laravel.log ]; then
+    touch /var/www/storage/logs/laravel.log
+fi
+chmod -Rf 775 /var/www/html/storage
+chmod -Rf 775 /var/www/html/bootstrap/cache
