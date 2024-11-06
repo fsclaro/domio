@@ -1,66 +1,122 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Domio
+## Objetivos
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este projeto foi criado para atender os requisitos da disciplina de Projeto Integrador II dos cursos do eixo da computação da Univesp (Universidade Virtual do Estado de São Paulo). Para tanto, foi desenvolvido um protótipo de sistema que permite a troca de mensagens entre moradores e o síndico de um determinado condomínio.
 
-## About Laravel
+## Integrantes
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* Aline Cristine Santos Dias
+* Carlos Renan Monteiro
+* Élder Alves Aquino Xavier
+* Elton Guilherme Ribeiro Miranda
+* Fernando Salles Claro
+* Gabriel Braga Ribeiro
+* Gabriel Monteiro de Oliveira
+* João Rodrigues Parra
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requisitos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* Banco de dados MySQL: ^8
+* Framework Laravel: ^10
+* Principais pacotes utilizados:
+  * doctrine/dbal: ^4.0
+  * leandrocfe/filament-apex-charts: ^3.1
+  * malzariey/filament-daterangepicker-filter: ^2.6
+  * pxlrbt/filament-excel: ^2.3
+  * ariaieboy/filament-currency: ^1.4
+* Principais pacotes dev:
+  * arryvdh/laravel-ide-helper": ^3.0
+  * larastan/larastan: ^2.9
+  * lucascudo/laravel-pt-br-localization: ^2.2
+  * squizlabs/php_codesniffer: ^3.9
 
-## Learning Laravel
+## Testando o projeto antes de instalar
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Caso você queira testar e conhecer o sistema, então acesse o link https://domio.joaoparra.dev. Ao acessar o sistema você pode utilizar uma das credenciais abaixo:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+* Administrador: e-mail: admin@domio.test | senha: 12345678
+* Gestor de Condomínio: e-mail: getor1@capytal.test | senha: 12345678
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Você poderá também criar suas próprias credenciais, utilizando o link https://domio.joaoparra.dev/dashboard/register.
 
-## Laravel Sponsors
+## Clonando o repositório
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Para realizar a clonagem do repositório, você deve digitar o seguinte comando:
 
-### Premium Partners
+```bash
+git clone git@github.com:fsclaro/domio.git
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+ou
 
-## Contributing
+git clone https://github.com/fsclaro/domio.git
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Pré-requisitos
 
-## Code of Conduct
+Para que o projeto funcione adequadamente, você precisa instalar os seguintes programas
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* Docker
+* Composer
 
-## Security Vulnerabilities
+## Preparando o projeto
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+O projeto utilizará o pacote Sail do próprio Laravel para criar os containers necessários para que o mesmo entre em funcinamento.
 
-## License
+Após a realização da clonagem do repositório, entre no diretório do projeto, digitando o comando:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+cd domio
+```
+
+Copie o arquivo .env.example para .env utilizando o comando:
+
+```bash
+cp .env.example .env
+```
+
+Agora, precisamos ajustar alguns parâmetros dentro do arquivo .env. Edite o arquivo e altere os seguintes parâmetros para os valores indicados abaixo:
+
+```env
+APP_URL=http://localhost
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=domio
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Agora execute os seguintes comandos:
+
+```bash
+php artisan key:generate
+php artisan storage:link
+chmod -R 755 storage
+```
+
+Vamos instalar os pacotes do projeto, digitando o seguinte comando:
+
+```bash
+composer install
+```
+**OBS:** Você perceberá que ocorrerão algumas mensagens de erro, não se assuste, vamos ajustar mais a frente. Estes erros exibidos estão relacionados ao banco de dados que ainda não existe.
+
+Agora, vamos subir os containers do projeto. Execute o comando abaixo:
+
+```bash
+./vendor/bin/sail build
+```
+Para subir os containers do projeto, digite o seguinte comando:
+
+```bash
+./vendor/bin/sail up -d
+```
+
+Agora, vamos criar o banco de dados e inserir os registros básicos do sistema. Para tanto, execute o comando abaixo:
+
+```bash
+php artisan migrate --seed
+```
+Para acessar o sistema, abra o seu navegador e aponte para o endereço http://localhost
+
